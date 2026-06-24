@@ -1,16 +1,18 @@
-# InstGS: Instance-aware 3D Gaussian Splatting
+# InstGS: Instantaneous Gaussian Splatting via Cross-Frame Instance Segmentation
 
-**InstGS** extends [3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) with instance segmentation and per-instance transformation support. It enables Gaussian instancing, with training and rendering of individual object instances as deformable Gaussian templates, allowing independent manipulation (translation, rotation, scaling) of each instance in the scene.
+3D Gaussian Splatting (3DGS) and Neural Radiance Fields (NeRF) have demonstrated remarkable capabilities in photo-realistic novel view synthesis. However, their practical adoption is often hindered by substantial storage requirements and limited rendering efficiency, particularly for scenes with repetitive structures. While existing acceleration methods primarily focus on optimizing individual Gaussian primitives or neural network architectures, they fail to address the fundamental redundancy inherent in repetitive content.
 
-> Based on the original [3D Gaussian Splatting](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) by Inria GRAPHDECO.
+To overcome this limitation, we introduce **InstGS**, the first Gaussian instancing-based accelerated rendering framework. To eliminate redundancy at the representation level, we perform gradient-driven cross-frame instance segmentation to group similar Gaussians into reusable components. A shared Gaussian template with instance-specific offsets is optimized to replace all similar instances, yielding substantial memory saving with negligible loss in visual fidelity. Extensive experiments demonstrate that InstGS achieves high-quality, high-frame-rate, and low-memory rendering performance.
 
-## Features
+> Built upon [3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) by Inria GRAPHDECO.
 
-- **Standard 3DGS Training** — Full training pipeline with depth regularization and anti-aliasing support (`train.py`)
-- **Instance-aware Training** — Train Gaussian representations for individual object instances with shared templates (`train_instances.py`, `train_instances_cuda.py`)
-- **Instance Rendering** — Render instances with per-instance 6-DoF transformations (`render_instances.py`, `render_instances_cuda.py`)
-- **Custom CUDA Rasterizer** — High-performance CUDA-based instance Gaussian rasterizer (`inst-gaussian-rasterization`)
-- **COLMAP Integration** — SfM preprocessing via COLMAP (`convert.py`, `run_colmap.sh`)
+## Key Features
+
+- **Gaussian Instancing** — Reuse shared Gaussian templates across repetitive scene structures, dramatically reducing storage while maintaining visual quality
+- **Cross-Frame Instance Segmentation** — Gradient-driven grouping of similar Gaussians across views into reusable components
+- **Instance-Specific Offsets** — Per-instance deformable offsets (position, color, opacity) applied to shared templates for scene adaptation
+- **Custom CUDA Rasterizer** — High-performance instance Gaussian rasterizer with native instancing support (`inst-gaussian-rasterization`)
+- **Standard 3DGS Baseline** — Full training pipeline with depth regularization and anti-aliasing (`train.py`)
 
 ## Installation
 
@@ -155,7 +157,17 @@ For inquiries about the original 3DGS, contact: george.drettakis@inria.fr
 
 ## Citation
 
-If you use this code in your research, please cite the original 3D Gaussian Splatting paper:
+If you use InstGS in your research, please cite:
+
+```bibtex
+@article{lu2025instgs,
+  author    = {Lu, Ziang and { }},
+  title     = {InstGS: Instantaneous Gaussian Splatting via Cross-Frame Instance Segmentation},
+  year      = {2025},
+}
+```
+
+The original 3D Gaussian Splatting:
 
 ```bibtex
 @article{kerbl20233dgs,
