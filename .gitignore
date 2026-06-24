@@ -1,0 +1,94 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.o
+*.obj
+
+# Cython / C extensions
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ======================
+# Project-specific ignores
+# ======================
+
+# Data (images, point clouds, COLMAP outputs)
+data/
+
+# Output (trained models, checkpoints, logs)
+output/
+
+# Checkpoint files
+*.pth
+
+# TensorBoard logs
+tensorboard_3d/
+runs/
+
+# Screenshots
+screenshots/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Cache
+.cache/
+*.cached
+
+# Debug
+debug/
+__debug__/
